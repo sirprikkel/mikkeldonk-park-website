@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mikkeldonk Park — Stadspark in Oss met vijver, wandelpaden, watervogels en De Klimspin speeltuin. 4.5 sterren op Google. 24 uur geopend, gratis.">
+  <title>Mikkeldonk Park — Stadspark Oss</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            lake: '#0369A1',
+            'lake-dark': '#075985',
+            'lake-light': '#0EA5E9',
+            reed: '#4D7C0F',
+            'reed-light': '#65A30D',
+            willow: '#A3E635',
+            mist: '#F0F9FF',
+            pebble: '#F1F5F9',
+            bark: '#78716C',
+            dark: '#1E293B',
+          },
+          fontFamily: {
+            serif: ['Lora', 'serif'],
+            sans: ['Raleway', 'sans-serif'],
+          },
+          borderRadius: { 'organic': '24px', 'organic-sm': '16px' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script defer src="https://analytics.code-lieshout.nl/prikkel" data-website-id="9e983f53-6929-4017-8119-b81f73fed04d"></script>
+  <style>
+    body { font-family: 'Raleway', sans-serif; }
+    h1, h2, h3 { font-family: 'Lora', serif; }
+    .hero-overlay { background: linear-gradient(180deg, rgba(3,105,161,0.15) 0%, rgba(30,41,59,0.75) 100%); }
+    .photo-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .photo-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 16px 40px rgba(3,105,161,0.15); }
+    .feature-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .feature-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(3,105,161,0.1); }
+    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:100; justify-content:center; align-items:center; cursor:pointer; }
+    .lightbox.active { display:flex; }
+    .lightbox img { max-width:90vw; max-height:90vh; border-radius:16px; object-fit:contain; }
+  </style>
+</head>
+<body class="bg-mist text-dark">
+
+  <!-- Navbar -->
+  <nav class="bg-white/90 backdrop-blur-sm shadow-sm fixed w-full top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-3 cursor-pointer">
+          <div class="w-10 h-10 bg-lake rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <span class="font-serif font-semibold text-lake text-lg">Mikkeldonk Park</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#over" class="text-dark/70 hover:text-lake cursor-pointer transition-colors duration-200">Over</a>
+          <a href="#klimspin" class="text-dark/70 hover:text-lake cursor-pointer transition-colors duration-200">De Klimspin</a>
+          <a href="#fotos" class="text-dark/70 hover:text-lake cursor-pointer transition-colors duration-200">Foto's</a>
+          <a href="#reviews" class="text-dark/70 hover:text-lake cursor-pointer transition-colors duration-200">Reviews</a>
+          <a href="#bezoek" class="bg-lake text-white px-5 py-2.5 rounded-organic-sm font-medium cursor-pointer hover:bg-lake-dark transition-colors duration-200">Route</a>
+        </div>
+        <button id="menuBtn" class="md:hidden p-2 cursor-pointer" aria-label="Menu openen">
+          <svg class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+      <div class="px-4 py-4 space-y-3">
+        <a href="#over" class="block text-dark/70 cursor-pointer">Over</a>
+        <a href="#klimspin" class="block text-dark/70 cursor-pointer">De Klimspin</a>
+        <a href="#fotos" class="block text-dark/70 cursor-pointer">Foto's</a>
+        <a href="#reviews" class="block text-dark/70 cursor-pointer">Reviews</a>
+        <a href="#bezoek" class="block bg-lake text-white px-5 py-2.5 rounded-organic-sm font-medium text-center cursor-pointer">Route</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative min-h-[85vh] flex items-center pt-16">
+    <div class="absolute inset-0">
+      <img src="images/google_place_1.jpg" alt="Mikkeldonk Park in Oss — vijver en natuur" class="w-full h-full object-cover">
+      <div class="hero-overlay absolute inset-0"></div>
+    </div>
+    <div class="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20">
+      <div class="max-w-2xl">
+        <span class="inline-block bg-lake/30 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-sm font-medium mb-6">Stadspark · Oss</span>
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          Mikkeldonk Park
+        </h1>
+        <p class="text-white/90 text-lg md:text-xl mb-8 leading-relaxed">
+          Stadspark met vijver, wandelpaden, watervogels en speeltuin De Klimspin. Een heerlijke plek om tot rust te komen in Oss.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="https://maps.google.com/?q=Mikkeldonk+Park+Oss" target="_blank" rel="noopener" class="bg-lake hover:bg-lake-dark text-white font-semibold px-8 py-3.5 rounded-organic-sm text-center cursor-pointer transition-colors duration-200 inline-flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Route plannen
+          </a>
+          <a href="#fotos" class="border-2 border-white text-white hover:bg-white hover:text-lake font-semibold px-8 py-3.5 rounded-organic-sm text-center cursor-pointer transition-colors duration-200">
+            Bekijk foto's
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-lake text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-serif font-bold text-willow">4.5</div>
+          <div class="text-white/70 text-sm mt-1">Google rating ⭐</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-serif font-bold text-willow">52</div>
+          <div class="text-white/70 text-sm mt-1">Reviews park</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-serif font-bold text-willow">24/7</div>
+          <div class="text-white/70 text-sm mt-1">Altijd geopend</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-serif font-bold text-willow">40 min</div>
+          <div class="text-white/70 text-sm mt-1">Wandelroute</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Over -->
+  <section id="over" class="py-20 bg-mist">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-lake mb-6">Over het park</h2>
+          <p class="text-dark/70 leading-relaxed mb-4">
+            Mikkeldonk Park is een geweldig park om te wandelen in Oss. De grootste route duurt ongeveer 40 minuten. Er is veel te zien: watervogels, een mooie vijver en prachtige natuur.
+          </p>
+          <p class="text-dark/70 leading-relaxed mb-4">
+            Het park is een heerlijke plek om wakker te worden in de ochtend, om te wandelen met de hond, of gewoon om te genieten van de rust. Het Mikkeldonk Park ligt aan de Wetering in Oss.
+          </p>
+          <div class="grid grid-cols-2 gap-4 mt-8">
+            <div class="feature-card bg-white rounded-organic-sm p-5 shadow-sm text-center">
+              <svg class="w-8 h-8 text-lake mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              <h3 class="font-serif font-semibold text-sm">Wandelen</h3>
+            </div>
+            <div class="feature-card bg-white rounded-organic-sm p-5 shadow-sm text-center">
+              <svg class="w-8 h-8 text-lake mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064"/></svg>
+              <h3 class="font-serif font-semibold text-sm">Vijver</h3>
+            </div>
+            <div class="feature-card bg-white rounded-organic-sm p-5 shadow-sm text-center">
+              <svg class="w-8 h-8 text-reed mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+              <h3 class="font-serif font-semibold text-sm">Watervogels</h3>
+            </div>
+            <div class="feature-card bg-white rounded-organic-sm p-5 shadow-sm text-center">
+              <svg class="w-8 h-8 text-reed mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <h3 class="font-serif font-semibold text-sm">Speeltuin</h3>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="images/google_place_2.jpg" alt="Vijver in Mikkeldonk Park" class="rounded-organic shadow-lg w-full" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- De Klimspin -->
+  <section id="klimspin" class="py-20 bg-pebble">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <img src="images/klimspin_1.jpg" alt="De Klimspin speeltuin in Mikkeldonk Park" class="rounded-organic shadow-lg w-full mb-4" loading="lazy">
+          <img src="images/klimspin_2.jpg" alt="Klimtoestel De Klimspin" class="rounded-organic shadow-lg w-full" loading="lazy">
+        </div>
+        <div class="order-1 md:order-2">
+          <span class="text-reed font-semibold text-sm uppercase tracking-wider">Speeltuin</span>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-lake mt-2 mb-6">De Klimspin</h2>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-yellow-500">⭐⭐⭐⭐⭐</span>
+            <span class="text-dark/60 text-sm">4.6/5 — 8 reviews op Google</span>
+          </div>
+          <p class="text-dark/70 leading-relaxed mb-4">
+            De Klimspin is een solide speeltoestel midden in het Mikkeldonk Park. Het is ontworpen om kinderen een uitdagende klimervaring te bieden. Helemaal bovenin klimmen is een avontuur!
+          </p>
+          <p class="text-dark/70 leading-relaxed mb-6">
+            Het speeltoestel ligt aan de Inlaat 4 in Oss, direct in het park. Vrij toegankelijk en geschikt voor kinderen die van klimmen houden.
+          </p>
+          <a href="https://maps.google.com/?q=De+Klimspin+Oss" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-lake font-semibold hover:text-lake-dark cursor-pointer transition-colors duration-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Bekijk op Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Foto's -->
+  <section id="fotos" class="py-20 bg-mist">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-lake mb-4">Het park in beeld</h2>
+        <p class="text-dark/60">Foto's van bezoekers via Google Maps</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="photo-card rounded-organic overflow-hidden shadow-sm cursor-pointer" onclick="openLightbox(this)">
+          <img src="images/google_place_1.jpg" alt="Mikkeldonk Park overzicht" class="w-full h-48 md:h-64 object-cover" loading="lazy">
+        </div>
+        <div class="photo-card rounded-organic overflow-hidden shadow-sm cursor-pointer" onclick="openLightbox(this)">
+          <img src="images/google_place_3.jpg" alt="Wandelpad Mikkeldonk" class="w-full h-48 md:h-64 object-cover" loading="lazy">
+        </div>
+        <div class="photo-card rounded-organic overflow-hidden shadow-sm cursor-pointer" onclick="openLightbox(this)">
+          <img src="images/google_place_4.jpg" alt="Natuur in het park" class="w-full h-48 md:h-64 object-cover" loading="lazy">
+        </div>
+        <div class="photo-card rounded-organic overflow-hidden shadow-sm cursor-pointer" onclick="openLightbox(this)">
+          <img src="images/google_place_5.jpg" alt="Vijver Mikkeldonk Park" class="w-full h-48 md:h-64 object-cover" loading="lazy">
+        </div>
+        <div class="photo-card rounded-organic overflow-hidden shadow-sm cursor-pointer md:col-span-2" onclick="openLightbox(this)">
+          <img src="images/klimspin_1.jpg" alt="De Klimspin speeltoestel" class="w-full h-48 md:h-64 object-cover" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="py-20 bg-pebble">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-lake mb-2">Wat bezoekers zeggen</h2>
+        <div class="flex items-center justify-center gap-2 mt-2">
+          <span class="text-2xl font-serif font-bold text-lake">4.5</span>
+          <span class="text-yellow-500">⭐⭐⭐⭐⭐</span>
+          <span class="text-dark/50 text-sm">52 reviews op Google</span>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-organic-sm p-6 shadow-sm">
+          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
+          <p class="text-dark/70 text-sm leading-relaxed mb-3">"Prachtig park om te wandelen."</p>
+          <p class="text-dark/50 text-xs font-medium">— Mario Petit</p>
+        </div>
+        <div class="bg-white rounded-organic-sm p-6 shadow-sm">
+          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
+          <p class="text-dark/70 text-sm leading-relaxed mb-3">"Het is een heerlijke plek, om wakker te worden in de ochtend. Het is mooi om te wandelen."</p>
+          <p class="text-dark/50 text-xs font-medium">— Denise Jansen</p>
+        </div>
+        <div class="bg-white rounded-organic-sm p-6 shadow-sm">
+          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
+          <p class="text-dark/70 text-sm leading-relaxed mb-3">"Fijn park om met de hond te wandelen. Veel watervogels."</p>
+          <p class="text-dark/50 text-xs font-medium">— Marion Awater</p>
+        </div>
+        <div class="bg-white rounded-organic-sm p-6 shadow-sm">
+          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐</div>
+          <p class="text-dark/70 text-sm leading-relaxed mb-3">"Geweldig park om te wandelen, grootste route ongeveer 40 minuten, veel te zien"</p>
+          <p class="text-dark/50 text-xs font-medium">— Rianne van Teeffelen</p>
+        </div>
+        <div class="bg-white rounded-organic-sm p-6 shadow-sm">
+          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
+          <p class="text-dark/70 text-sm leading-relaxed mb-3">"Echt leuk. Helemaal bovenin geweest." (De Klimspin)</p>
+          <p class="text-dark/50 text-xs font-medium">— Rutger Huisman</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bezoek -->
+  <section id="bezoek" class="py-20 bg-lake text-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">Kom langs</h2>
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <svg class="w-6 h-6 text-willow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div>
+                <h3 class="font-semibold">Park</h3>
+                <p class="text-white/80">Wetering 47, 5345 RH Oss</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <svg class="w-6 h-6 text-willow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div>
+                <h3 class="font-semibold">De Klimspin</h3>
+                <p class="text-white/80">Inlaat 4, 5345 GL Oss</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <svg class="w-6 h-6 text-willow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <h3 class="font-semibold">Openingstijden</h3>
+                <p class="text-white/80">24 uur geopend, 7 dagen per week</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <svg class="w-6 h-6 text-willow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <h3 class="font-semibold">Toegang</h3>
+                <p class="text-white/80">Gratis — vrij toegankelijk</p>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=Mikkeldonk+Park+Oss" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white text-lake font-semibold px-8 py-3.5 rounded-organic-sm mt-8 cursor-pointer hover:bg-mist transition-colors duration-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Open in Google Maps
+          </a>
+        </div>
+        <div class="rounded-organic overflow-hidden shadow-lg">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477!2d5.52!3d51.79!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMikkeldonk+Park!5e0!3m2!1snl!2snl!4v1"
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Locatie Mikkeldonk Park"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white/60 py-12">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center">
+        <h3 class="font-serif text-white font-semibold text-lg mb-2">Mikkeldonk Park</h3>
+        <p class="text-white/50 mb-1">Wetering 47, 5345 RH Oss</p>
+        <p class="text-white/50 mb-6">Incl. speeltuin De Klimspin · 24/7 geopend · Gratis</p>
+        <p class="text-white/30 text-sm">Gebouwd door <a href="https://www.code-lieshout.nl" class="text-lake-light hover:text-white cursor-pointer transition-colors duration-200">Code Lieshout</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Vergroot">
+  </div>
+
+  <script>
+    document.getElementById('menuBtn').addEventListener('click', function() { document.getElementById('mobileMenu').classList.toggle('hidden'); });
+    function openLightbox(el) { const img=el.querySelector('img'); document.getElementById('lightboxImg').src=img.src; document.getElementById('lightboxImg').alt=img.alt; document.getElementById('lightbox').classList.add('active'); }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+    document.addEventListener('keydown', function(e) { if(e.key==='Escape') closeLightbox(); });
+    document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', function(e) { e.preventDefault(); const t=document.querySelector(this.getAttribute('href')); if(t){t.scrollIntoView({behavior:'smooth',block:'start'}); document.getElementById('mobileMenu').classList.add('hidden');} }); });
+  </script>
+</body>
+</html>
